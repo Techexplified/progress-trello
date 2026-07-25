@@ -99,12 +99,14 @@
       function fit(){
         requestAnimationFrame(()=>{
           const tb=document.querySelector(".topbar-wrap");
+          const ft=document.querySelector(".footer-wrap");
           const inner=document.querySelector(".cinner");
           if(!inner){t.sizeTo("body").catch(()=>{});return;}
           /* .content is a flex child, so its scrollHeight reports the stretched
-             box. .cinner is a plain block, so it reports the true content height. */
+             box. .cinner is a plain block, so it reports the true content height.
+             The topbar and the pinned footer sit outside the scroller. */
           const pad=30;
-          const need=(tb?tb.offsetHeight:0)+inner.getBoundingClientRect().height+pad;
+          const need=(tb?tb.offsetHeight:0)+(ft?ft.offsetHeight:0)+inner.getBoundingClientRect().height+pad;
           const screenH=(window.screen&&window.screen.availHeight)||900;
           const cap=Math.max(400,Math.min(660,screenH-260));
           t.sizeTo(Math.min(Math.ceil(need),cap)).catch(()=>{});
@@ -179,7 +181,8 @@
           <div class="card" style="padding:2px 12px"><table><thead><tr>
             <th style="width:24%">Period</th><th style="width:9%">Total</th><th style="width:11%">Done</th><th style="width:12%">Overtime</th><th style="width:22%">Deadline</th><th style="width:22%">Rating</th>
           </tr></thead><tbody>${rows}</tbody></table></div>
-          <div class="export-row">
+          </div></div>
+          <div class="footer-wrap"><div class="export-row">
             <div class="fmt-select" id="fmtSelect">
               <button class="fmt-btn" id="fmtBtn" aria-haspopup="listbox">
                 <span class="fmt-icon">${icon(ICONS[FORMATS[exportFmt].iconKey])}</span>
@@ -195,7 +198,6 @@
               </div>
             </div>
             <button class="export" id="export">${icon(ICONS.dl)}Export</button>
-          </div>
           </div></div>`;
 
         document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{mode=b.dataset.mode;load();});
@@ -388,7 +390,7 @@
           w.document.write(`<!doctype html><html><head><meta charset="utf-8">
             <title>Progress ${mode} report</title>${styles}
             <style>body{margin:0;padding:16px;background:${getComputedStyle(document.body).backgroundColor}}
-            .export-row,.tip,.popover,.topbar .seg{display:none !important}</style>
+            .footer-wrap,.export-row,.tip,.popover,.topbar .seg{display:none !important}</style>
             </head><body>${body}</body></html>`);
           w.document.close();
           w.focus();

@@ -534,10 +534,16 @@
         padding: 2px 7px; border-radius: 20px;
         font-variant-numeric: tabular-nums;
       }
+      /* Pinned action bar — never scrolls away, so Export is always visible */
+      .footer-wrap {
+        flex-shrink: 0;
+        padding: 10px 16px 12px;
+        border-top: 1px solid var(--border);
+        background: var(--bg);
+      }
       .export-row {
         display: flex;
         gap: 8px;
-        margin-top: 12px;
         position: relative;
         justify-content: flex-end;
       }
@@ -679,6 +685,7 @@
           print-color-adjust: exact !important;
         }
         .topbar .seg,
+        .footer-wrap,
         .export-row,
         .tip,
         .popover {
