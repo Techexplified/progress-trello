@@ -81,15 +81,15 @@ function dueCell(ds){
   const now = Date.now();
   const d = ds.date ? new Date(ds.date).getTime() : null;
   if(ds.key === "done")
-    return `<span class="due"><span class="dot green"></span><span class="due-txt muted">Completed</span></span>`;
+    return `<span class="due"><span class="due-main"><span class="dot green"></span><span class="due-txt muted">Completed</span></span></span>`;
   if(ds.key === "overdue"){
     const n = Math.max(1, daysBetween(now, d));
-    return `<span class="due"><span class="dot red"></span><span class="due-txt">${fmtShort(d)}</span><span class="due-sub">&middot; overdue ${n}d</span></span>`;
+    return `<span class="due"><span class="due-main"><span class="dot red"></span><span class="due-txt">${fmtShort(d)}</span></span><span class="due-sub">overdue ${n}d</span></span>`;
   }
   if(ds.key === "today")
-    return `<span class="due"><span class="dot amber"></span><span class="due-txt">Due today</span></span>`;
+    return `<span class="due"><span class="due-main"><span class="dot amber"></span><span class="due-txt">Due today</span></span></span>`;
   const n = Math.max(1, daysBetween(d, now));
-  return `<span class="due"><span class="dot blue"></span><span class="due-txt">${fmtShort(d)}</span><span class="due-sub">&middot; in ${n}d</span></span>`;
+  return `<span class="due"><span class="due-main"><span class="dot blue"></span><span class="due-txt">${fmtShort(d)}</span></span><span class="due-sub">in ${n}d</span></span>`;
 }
 
 function initialsOf(name){

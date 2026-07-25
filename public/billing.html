@@ -49,18 +49,29 @@
         margin: 0 auto;
         box-sizing: border-box;
       }
+      /* visible scrollbar, matching the reports modal */
       .wrap.scrolls {
-        overflow-y: auto;
+        overflow-y: scroll;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.04);
       }
       .wrap::-webkit-scrollbar {
-        width: 7px;
+        width: 12px;
       }
       .wrap::-webkit-scrollbar-track {
-        background: transparent;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 8px;
       }
       .wrap::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.13);
-        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+      }
+      .wrap::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.45);
+        background-clip: content-box;
       }
       /* header */
       .topbar {
@@ -325,12 +336,18 @@
         min-width: 30px;
       }
 
-      /* due cell */
+      /* due cell — date on top, "overdue 12d" stacked underneath */
       .due {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 3px;
+        white-space: nowrap;
+      }
+      .due-main {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        white-space: nowrap;
       }
       .dot {
         width: 6px;
