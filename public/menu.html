@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+
+    <style>
+
+      :root {
+        /* Dark only */
+        --bg: #1d2125;
+        --text-strong: #e2e8ee;
+        --text-dim: #8590a2;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(255, 255, 255, 0.16);
+        --shadow: none;
+
+        --green-fg: #6ee7b7;
+        --green-bg: rgba(75, 206, 151, 0.12);
+        --green-chip: rgba(75, 206, 151, 0.2);
+        --blue-fg: #85b8ff;
+        --blue-bg: rgba(87, 157, 255, 0.12);
+        --blue-chip: rgba(87, 157, 255, 0.2);
+        --orange-fg: #fbbf7c;
+        --orange-bg: rgba(245, 160, 95, 0.12);
+        --orange-chip: rgba(245, 160, 95, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        background: var(--bg);
+        font-family: "DM Sans", -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow: hidden;
+      }
+
+      .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 14px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--bg);
+        cursor: pointer;
+        text-align: left;
+        font-family: inherit;
+        transition:
+          transform 0.12s ease,
+          border-color 0.12s ease,
+          box-shadow 0.12s ease;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-1px);
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow);
+      }
+
+      .menu-item:active {
+        transform: translateY(0);
+      }
+
+      .menu-item.green {
+        background: var(--green-bg);
+      }
+      .menu-item.blue {
+        background: var(--blue-bg);
+      }
+      .menu-item.orange {
+        background: var(--orange-bg);
+      }
+
+      .chip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        flex-shrink: 0;
+      }
+      .green .chip {
+        background: var(--green-chip);
+        color: var(--green-fg);
+      }
+      .blue .chip {
+        background: var(--blue-chip);
+        color: var(--blue-fg);
+      }
+      .orange .chip {
+        background: var(--orange-chip);
+        color: var(--orange-fg);
+      }
+
+      .text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-strong);
+        letter-spacing: -0.01em;
+      }
+
+      .sub {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--text-dim);
+      }
+
+      .chevron {
+        color: var(--text-dim);
+        flex-shrink: 0;
+        opacity: 0.6;
+      }
+
+      /* one-time connect screen */
+      .auth {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 26px 18px 20px;
+        gap: 10px;
+      }
+      .auth-chip {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        background: var(--blue-bg);
+        color: var(--blue-fg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .auth-chip svg { width: 22px; height: 22px; }
+      .auth-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-strong);
+      }
+      .auth-sub {
+        font-size: 12px;
+        color: var(--text-dim);
+        line-height: 1.5;
+        max-width: 250px;
+      }
+      .auth-err {
+        font-size: 11.5px;
+        color: #ff8f8f;
+        max-width: 250px;
+      }
+      .auth-btn {
+        margin-top: 6px;
+        width: 100%;
+        padding: 11px;
+        background: #0c66e4;
+        color: #fff;
+        border: none;
+        border-radius: 9px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .auth-btn:hover { filter: brightness(1.08); }
+      .auth-btn:disabled { opacity: 0.6; cursor: default; }
+    </style>
+  </head>
+
+  <body>
+    <div class="menu" id="menu"></div>
+
+    <script src="./config.js"></script>
+    <script src="./menu.js"></script>
+  </body>
+</html>
