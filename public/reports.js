@@ -106,7 +106,7 @@
           const pad=30;
           const need=(tb?tb.offsetHeight:0)+inner.getBoundingClientRect().height+pad;
           const screenH=(window.screen&&window.screen.availHeight)||900;
-          const cap=Math.max(400,Math.min(800,screenH-210));
+          const cap=Math.max(400,Math.min(660,screenH-260));
           t.sizeTo(Math.min(Math.ceil(need),cap)).catch(()=>{});
         });
       }
