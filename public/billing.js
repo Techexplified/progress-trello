@@ -189,7 +189,7 @@ function renderDashboard(){
 
     <div class="tab-row">
       <div class="tabs">
-        <button class="tab ${billTab==="details"?"on":""}" data-tab="details">Card details<span class="tabn">${cardDetails.length}</span></button>
+        <button class="tab ${billTab==="details"?"on":""}" data-tab="details">Task details<span class="tabn">${cardDetails.length}</span></button>
         <button class="tab ${billTab==="billable"?"on":""}" data-tab="billable">Active billable tasks<span class="tabn">${billableList.length}</span></button>
       </div>
       <button class="export sm" id="export">Generate Details</button>
