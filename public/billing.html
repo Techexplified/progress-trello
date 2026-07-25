@@ -52,13 +52,12 @@
         margin: 0 auto;
         box-sizing: border-box;
         height: 100%;
-        overflow-y: auto;
+        /* scroll, not auto — the track stays visible even when content fits,
+           so the popup always reads as scrollable like the reports modal */
+        overflow-y: scroll;
         overscroll-behavior: contain;
         scrollbar-width: thin;
         scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.04);
-      }
-      .wrap.scrolls {
-        overflow-y: scroll;
       }
       .wrap::-webkit-scrollbar {
         width: 12px;

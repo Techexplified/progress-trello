@@ -38,7 +38,6 @@ function fit(){
     el.style.height = "auto";
     const natural = el.scrollHeight;
     el.style.height = "";
-    el.classList.toggle("scrolls", natural > FIT_MAX);
     const target = Math.min(FIT_MAX, Math.max(FIT_MIN, natural));
     try{ t.sizeTo(target); }catch(e){}
   });
