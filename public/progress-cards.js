@@ -428,6 +428,7 @@ function bindTabs() {
   qs("tabReports").addEventListener("click", () => {
     t.modal({
       title: "Reports & Analytics",
+      accentColor: "#ffffff", // Trello draws the modal title; this makes it white instead of blue
       url: "./reports.html",
       fullscreen: false,
       height: 820,

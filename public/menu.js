@@ -13,6 +13,7 @@
           icon: '<path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7" rx="1"/><rect x="12" y="6" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="4" rx="1"/>',
           modal: {
             title: "Reports & Analytics",
+            accentColor: "#ffffff", // Trello draws the modal title; this makes it white instead of blue
             url: "./reports.html",
             fullscreen: false,
             height: 820,
