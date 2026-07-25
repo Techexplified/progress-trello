@@ -165,6 +165,7 @@ function renderDashboard(){
     : "";
 
   app().innerHTML = `
+    <div class="head-wrap">
     <div class="topbar">
       <div>
         <h1>Workspace &amp; billing</h1>
@@ -186,7 +187,9 @@ function renderDashboard(){
       </div>
       <button class="export sm" id="export">Generate Details</button>
     </div>
+    </div>
 
+    <div class="scroller">
     ${billTab==="details" ? `
     <div class="table-card">
       <table>
@@ -213,10 +216,9 @@ function renderDashboard(){
       </table>
       ${footStrip}
     </div>`}
-
-    <div class="bottom">
-      ${rateHint || ""}
     </div>
+
+    ${rateHint ? `<div class="foot-wrap">${rateHint}</div>` : ""}
   `;
 
   document.getElementById("export").onclick = openInvoice;

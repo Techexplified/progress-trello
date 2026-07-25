@@ -44,14 +44,27 @@
         height: 100%;
         overflow: hidden;
       }
-      /* The scroller is bound to the real iframe height, not to a guessed cap —
-         Trello fixes the modal height, so anything taller must scroll here. */
+      /* Three regions: header and note stay put, only the table scrolls.
+         Trello fixes the modal height, so the middle region takes what's left. */
       .wrap {
-        padding: 14px 16px 16px;
         max-width: 1000px;
         margin: 0 auto;
         box-sizing: border-box;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .head-wrap {
+        flex-shrink: 0;
+        padding: 14px 16px 0;
+      }
+      .scroller {
+        /* basis auto, not 0 — fit() measures this tree at height:auto, and a
+           0-basis child would collapse and report no content */
+        flex: 1 1 auto;
+        min-height: 0;
+        padding: 0 16px;
         /* scroll, not auto — the track stays visible even when content fits,
            so the popup always reads as scrollable like the reports modal */
         overflow-y: scroll;
@@ -59,22 +72,27 @@
         scrollbar-width: thin;
         scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.04);
       }
-      .wrap::-webkit-scrollbar {
+      .scroller::-webkit-scrollbar {
         width: 12px;
       }
-      .wrap::-webkit-scrollbar-track {
+      .scroller::-webkit-scrollbar-track {
         background: rgba(255, 255, 255, 0.04);
         border-radius: 8px;
       }
-      .wrap::-webkit-scrollbar-thumb {
+      .scroller::-webkit-scrollbar-thumb {
         background: rgba(255, 255, 255, 0.3);
         border-radius: 8px;
         border: 2px solid transparent;
         background-clip: content-box;
       }
-      .wrap::-webkit-scrollbar-thumb:hover {
+      .scroller::-webkit-scrollbar-thumb:hover {
         background: rgba(255, 255, 255, 0.45);
         background-clip: content-box;
+      }
+      .foot-wrap {
+        flex-shrink: 0;
+        padding: 0 16px 14px;
+        background: var(--bg);
       }
       /* header */
       .topbar {
@@ -203,7 +221,7 @@
         border: 1px solid var(--border);
         border-radius: 12px;
         overflow: hidden;
-        margin-bottom: 26px;
+        margin-bottom: 4px;
       }
       table {
         width: 100%;
@@ -425,14 +443,6 @@
         letter-spacing: -0.01em;
       }
 
-      /* bottom bar */
-      .bottom {
-        display: block;
-      }
-      .bottom .note {
-        font-size: 10.5px;
-        color: var(--faint);
-      }
       .export {
         padding: 10px 20px;
         background: var(--export-bg);
