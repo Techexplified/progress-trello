@@ -32,14 +32,14 @@ function fit(){
   requestAnimationFrame(() => {
     const el = app();
     if(!el) return;
-    el.classList.remove("scrolls");
-    el.style.maxHeight = "none";
+    /* .wrap is height:100% so it can scroll inside the modal — that makes its own
+       scrollHeight echo the iframe height. Measure at height:auto to get the
+       true content height, then hand that to sizeTo for the popup case. */
+    el.style.height = "auto";
     const natural = el.scrollHeight;
+    el.style.height = "";
+    el.classList.toggle("scrolls", natural > FIT_MAX);
     const target = Math.min(FIT_MAX, Math.max(FIT_MIN, natural));
-    if(natural > FIT_MAX){
-      el.style.maxHeight = FIT_MAX + "px";
-      el.classList.add("scrolls");
-    }
     try{ t.sizeTo(target); }catch(e){}
   });
 }

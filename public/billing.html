@@ -41,20 +41,24 @@
           sans-serif;
         -webkit-font-smoothing: antialiased;
         font-size: 13px;
+        height: 100%;
         overflow: hidden;
       }
+      /* The scroller is bound to the real iframe height, not to a guessed cap —
+         Trello fixes the modal height, so anything taller must scroll here. */
       .wrap {
         padding: 14px 16px 16px;
         max-width: 1000px;
         margin: 0 auto;
         box-sizing: border-box;
-      }
-      /* visible scrollbar, matching the reports modal */
-      .wrap.scrolls {
-        overflow-y: scroll;
+        height: 100%;
+        overflow-y: auto;
         overscroll-behavior: contain;
         scrollbar-width: thin;
         scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.04);
+      }
+      .wrap.scrolls {
+        overflow-y: scroll;
       }
       .wrap::-webkit-scrollbar {
         width: 12px;
