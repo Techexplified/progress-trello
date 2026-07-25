@@ -34,11 +34,18 @@ function fit(){
     if(!el) return;
     /* .wrap is height:100% so it can scroll inside the modal — that makes its own
        scrollHeight echo the iframe height. Measure at height:auto to get the
-       true content height, then hand that to sizeTo for the popup case. */
+       true content height, then hand that to sizeTo. */
+    el.style.maxHeight = "none";
     el.style.height = "auto";
     const natural = el.scrollHeight;
     el.style.height = "";
-    const target = Math.min(FIT_MAX, Math.max(FIT_MIN, natural));
+    /* Cap to what the screen can actually show. Trello's modal chrome plus the
+       board behind it eat ~260px; past that the pinned footer is clipped by the
+       browser window, which no amount of CSS inside the iframe can recover. */
+    const screenH = (window.screen && window.screen.availHeight) || 900;
+    const cap = Math.max(400, Math.min(FIT_MAX, screenH - 260));
+    el.style.maxHeight = cap + "px";
+    const target = Math.min(cap, Math.max(FIT_MIN, natural));
     try{ t.sizeTo(target); }catch(e){}
   });
 }
